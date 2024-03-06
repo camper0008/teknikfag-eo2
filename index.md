@@ -23,9 +23,11 @@ Vi kan hurtigt se et par ting der muligvis kan optimeres:
 1. I (b) skal build serveren downloade filerne fra en git server. Hvis det git projekt har mange store statiske filer der ikke ændrer sig ofte, f.eks. billeder eller videoer, skal den også hente de filer ned selv om den egentligt kun har brug for koden. Billederne kunne i stedet være på f.eks. et seperat CDN.
 2. I (c) - hvis build serveren's hardware ikke er optimeret til dets arbejde, f.eks. hvis pengene gik til GPU kræft og hvad man réelt set skal bruge er CPU kræft, er det naturligvist langsomt - dog ejer jeg ikke nok hardware til at kunne lave en analyse af forskellen.
 3. I (d) og (f) - hvis docker filen er naïvt skrevet og f.eks. inkluderer kode eller kompileringsartifakter som ikke er relevant til at programmet kan køre, skal alt det information stadigvæk sendes over netværket.
-4. I (h) - hvis man bruger et sprog med forholdsvis tung runtime, f.eks. Java eller C#, skal man vente på at runtimen starter
+4. I (h) - hvis man bruger et sprog med forholdsvis tung runtime, f.eks. Java, C#, eller Node, skal man vente på at runtimen starter
 
-Til det formål har jeg opsat et eksempel web projekt med et kendt web frameworket i programmeringssproget Rust. Dette er fordi at kompilere sådan et projekt, med frameworket’s mange dependencies, tager en relativ langt tid.
+Det er dog meget abstrakt, så jeg vil gerne kunne opsamle statistik så jeg empirisk kan vurdere hvor stor forskel det ene eller andet gør.
+
+Til det formål har jeg opsat et eksempel web projekt med et kendt web framework i programmeringssproget Rust, som har en relativ høj kompileringstid men en meget tynd runtime, og et eksempel projekt i et kendt web framework med Node runtimen og TypeScript programmeringssproget, som burde have en relativt lavere kompileringstid men en større runtime.
 
 Dette projekt bliver så indepakket i en docker container, for at ligne hvordan vi gør det hos MySKOV.
 
